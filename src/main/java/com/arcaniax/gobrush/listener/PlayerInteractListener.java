@@ -82,7 +82,7 @@ public class PlayerInteractListener implements Listener {
             if (!(brushPlayer.isBrushEnabled())) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes(
                         '&',
-                        PREFIX + "&c您的筆刷已停用，左鍵單擊以啟用筆刷或輸入 &f/gb toggle&c."
+                        PREFIX + "&c您的筆刷已停用，左鍵點擊以啟用筆刷或輸入 &f/gb toggle&c."
                 ));
                 return;
             }
