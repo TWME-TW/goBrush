@@ -80,7 +80,7 @@ public class HeightMapExporter {
             AdjustZ = (blockSize - (maxZ - minZ)) / 2;
         }
         if (blockSize < 20) {
-            p.sendMessage(prefix + "§cPlease make a bigger selection");
+            p.sendMessage(prefix + "§c請選擇更大的區域");
             return;
         }
         int highest = 0;
@@ -102,7 +102,7 @@ public class HeightMapExporter {
         }
         int height = highest - lowest;
         if (height < 10) {
-            p.sendMessage(prefix + "§cPlease select a bigger mountain");
+            p.sendMessage(prefix + "§c請選擇更大的山");
             return;
         }
         BufferedImage img = new BufferedImage(blockSize, blockSize, BufferedImage.TYPE_INT_RGB);

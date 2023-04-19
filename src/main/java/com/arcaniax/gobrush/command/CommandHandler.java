@@ -50,7 +50,7 @@ public class CommandHandler implements CommandExecutor {
             if (!p.hasPermission("gobrush.use")) {
                 p.sendMessage(ChatColor.translateAlternateColorCodes(
                         '&',
-                        prefix + "&cYou are lacking the permission gobrush.use"
+                        prefix + "&c您缺少權限 gobrush.use"
                 ));
                 return true;
             }
@@ -75,26 +75,26 @@ public class CommandHandler implements CommandExecutor {
                 return true;
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("size") || args[0].equalsIgnoreCase("s")) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb size [number]"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb size [數字]"));
                     return true;
                 } else if (args[0].equalsIgnoreCase("intensity") || args[0].equalsIgnoreCase("i")) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb intensity [number]"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb intensity [數字]"));
                     return true;
                 } else if (args[0].equalsIgnoreCase("brush") || args[0].equalsIgnoreCase("b")) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb brush [fileName]"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb brush [檔案名稱]"));
                     return true;
                 } else if ((args[0].equalsIgnoreCase("export") || args[0].equalsIgnoreCase("e")) && p.hasPermission(
                         "gobrush.export")) {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb export [fileName]"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb export [檔案名稱]"));
                     return true;
                 } else if (args[0].equalsIgnoreCase("toggle") || args[0].equalsIgnoreCase("t")) {
 
                     if (bp.isBrushEnabled()) {
                         bp.toggleBrushEnabled();
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&cDisabled brush"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c停用筆刷"));
                     } else {
                         bp.toggleBrushEnabled();
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&aEnabled brush"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&a啟用筆刷"));
                     }
                     return true;
                 } else if ((args[0].equalsIgnoreCase("reload") || args[0].equalsIgnoreCase("r")) && p.hasPermission(
@@ -102,10 +102,10 @@ public class CommandHandler implements CommandExecutor {
                     GoBrushPlugin.getPlugin().reloadConfig();
                     Session.getConfig().reload(GoBrushPlugin.getPlugin().getConfig());
                     int amountOfValidBrushes = Session.initializeValidBrushes();
-                    GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "Registered {0} brushes.", amountOfValidBrushes);
+                    GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "已註冊 {0} 個筆刷。", amountOfValidBrushes);
                     Session.initializeBrushMenu();
                     Session.initializeBrushPlayers();
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&aReload Successful"));
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&a重新加載成功"));
                     return true;
                 } else if (args[0].equalsIgnoreCase("info") || args[0].equalsIgnoreCase("i")) {
 
@@ -156,22 +156,22 @@ public class CommandHandler implements CommandExecutor {
                         if (sizeAmount > bp.getMaxBrushSize() && !p.hasPermission("gobrush.bypass.maxsize")) {
                             p.sendMessage(ChatColor.translateAlternateColorCodes(
                                     '&',
-                                    prefix + "&6The maximum size is &e" + bp.getMaxBrushSize()
+                                    prefix + "&6最大尺寸為 &e" + bp.getMaxBrushSize()
                             ));
                             sizeAmount = bp.getMaxBrushSize();
                         } else if (sizeAmount < 5) {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6The minimum size is &e5"));
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6最小尺寸是 &e5"));
                             sizeAmount = 5;
                         } else if (sizeAmount % 2 == 0) {
                             sizeAmount++;
                         }
                         bp.setBrushSize(sizeAmount);
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6Size set to: &e" + sizeAmount));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6大小設置為: &e" + sizeAmount));
                         bp.getBrush().resize(sizeAmount);
 
                         return true;
                     } catch (Exception e) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb size [number]"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb size [數字]"));
                         return true;
                     }
                 } else if (args[0].equalsIgnoreCase("intensity") || args[0].equalsIgnoreCase("i")) {
@@ -180,21 +180,21 @@ public class CommandHandler implements CommandExecutor {
                         if (intensityAmount > bp.getMaxBrushIntensity() && !p.hasPermission("gobrush.bypass.maxintensity")) {
                             p.sendMessage(ChatColor.translateAlternateColorCodes(
                                     '&',
-                                    prefix + "&6The maximum intensity is &e" + bp.getBrushIntensity()
+                                    prefix + "&6最大強度為 &e" + bp.getBrushIntensity()
                             ));
                             intensityAmount = bp.getMaxBrushIntensity();
                         } else if (intensityAmount < 1) {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6The minimum intensity is &e1"));
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6最小強度是 &e1"));
                             intensityAmount = 1;
                         }
                         bp.setBrushIntensity(intensityAmount);
                         p.sendMessage(ChatColor.translateAlternateColorCodes(
                                 '&',
-                                prefix + "&6Intensity set to: &e" + intensityAmount
+                                prefix + "&6強度設置為: &e" + intensityAmount
                         ));
                         return true;
                     } catch (Exception e) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb intensity [number]"));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&c/gb intensity [數字]"));
                         return true;
                     }
                 } else if (args[0].equalsIgnoreCase("brush") || args[0].equalsIgnoreCase("b")) {
@@ -204,12 +204,12 @@ public class CommandHandler implements CommandExecutor {
                         Brush brush = Session.getBrush(name);
                         bp.setBrush(brush);
                         bp.getBrush().resize(size);
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6Brush set to: &e" + name));
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6筆刷設置為: &e" + name));
                         return true;
                     } else {
                         p.sendMessage(ChatColor.translateAlternateColorCodes(
                                 '&',
-                                prefix + "&cCould not load brush \"" + name + "\""
+                                prefix + "&c無法載入筆刷 \"" + name + "\""
                         ));
                         return true;
                     }
@@ -225,19 +225,19 @@ public class CommandHandler implements CommandExecutor {
                             } catch (IncompleteRegionException e) {
                                 p.sendMessage(ChatColor.translateAlternateColorCodes(
                                         '&',
-                                        prefix + "&cPlease make a WorldEdit selection &6(//wand)"
+                                        prefix + "&c請創建 WorldEdit 選區 &6(//wand)"
                                 ));
                                 return;
                             }
                             if (!hm.hasWorldEditSelection()) {
                                 p.sendMessage(ChatColor.translateAlternateColorCodes(
                                         '&',
-                                        prefix + "&cPlease make a WorldEdit selection &8(//wand)"
+                                        prefix + "&c請創建 WorldEdit 選區 &8(//wand)"
                                 ));
                                 return;
                             }
                             hm.exportImage(500, name);
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6Exported &e" + name + ".png"));
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "&6已輸出為 &e" + name + ".png"));
                             Session.initializeValidBrushes();
                             Session.initializeBrushMenu();
 

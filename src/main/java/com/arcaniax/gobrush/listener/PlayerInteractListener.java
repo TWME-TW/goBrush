@@ -82,7 +82,7 @@ public class PlayerInteractListener implements Listener {
             if (!(brushPlayer.isBrushEnabled())) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes(
                         '&',
-                        PREFIX + "&cYour brush is disabled, left click to enable the brush or type &f/gb toggle&c."
+                        PREFIX + "&c您的筆刷已停用，左鍵單擊以啟用筆刷或輸入 &f/gb toggle&c."
                 ));
                 return;
             }

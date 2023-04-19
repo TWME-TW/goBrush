@@ -39,7 +39,7 @@ public class BrushZipManager {
         try {
             amountOfValidBrushes = Session.initializeValidBrushes();
             if (amountOfValidBrushes == 0) {
-                GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "Downloading brushes from GitHub, please wait...");
+                GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "正在從GitHub下載筆刷，請稍候...");
                 try (BufferedInputStream bufferedInputStream = new BufferedInputStream(new URL(
                         "https://github.com/Arcaniax-Development/goBrush-Assets/blob/main/brushes.zip?raw=true").openStream());
                      FileOutputStream fileOutputStream = new FileOutputStream(GoBrushPlugin
@@ -50,9 +50,9 @@ public class BrushZipManager {
                     while ((bytesRead = bufferedInputStream.read(dataBuffer, 0, 1024)) != -1) {
                         fileOutputStream.write(dataBuffer, 0, bytesRead);
                     }
-                    GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "Brushes have been downloaded successfully.");
+                    GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "筆刷下載成功。");
                     try {
-                        GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "Extracting brushes...");
+                        GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "提取筆刷...");
                         ZipFile zipFile = new ZipFile(GoBrushPlugin.getPlugin().getDataFolder() + "/brushes/brushes.zip");
                         zipFile.extractAll(GoBrushPlugin.getPlugin().getDataFolder() + "/brushes/");
                         GoBrushPlugin.getPlugin().reloadConfig();
@@ -60,7 +60,7 @@ public class BrushZipManager {
                         Session.getConfig().reload(GoBrushPlugin.getPlugin().getConfig());
                         Session.initializeBrushMenu();
                         Session.initializeBrushPlayers();
-                        GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "Cleaning up...");
+                        GoBrushPlugin.getPlugin().getLogger().log(Level.INFO, "清理中...");
                         String brushesZip = GoBrushPlugin.getPlugin().getDataFolder() + "/brushes/brushes.zip";
                         try {
                             Files.delete(Paths.get(brushesZip));
@@ -69,7 +69,7 @@ public class BrushZipManager {
                         }
                         GoBrushPlugin.getPlugin().getLogger().log(
                                 Level.INFO,
-                                "Registered {0} brushes. We are all set!",
+                                "已註冊 {0} 個筆刷。準備好了!",
                                 amountOfValidBrushes
                         );
                     } catch (ZipException e) {
@@ -78,7 +78,7 @@ public class BrushZipManager {
                 } catch (IOException e) {
                     GoBrushPlugin.getPlugin().getLogger().log(
                             Level.SEVERE,
-                            "Could not download brushes. Please download them manually and put them into /plugins/goBrush/brushes"
+                            "無法下載筆刷。請手動下載並放入 /plugins/goBrush/brushes"
                     );
                     GoBrushPlugin.getPlugin().getLogger().log(
                             Level.SEVERE,
